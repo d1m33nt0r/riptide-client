@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using DefaultNamespace;
 using Multiplayer;
 using RiptideNetworking;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public ushort ID { get; private set; }
     public bool IsLocal { get; private set; }
 
+    [SerializeField] private PlayerAnimationManager animationManager;
     [SerializeField] private Transform cameraTransform;
     
     private string username;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
         if (!IsLocal)
         {
             cameraTransform.forward = forward;
+            animationManager.AnimateBasedOnSpeed();
         }
     }
 

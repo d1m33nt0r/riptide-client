@@ -19,9 +19,9 @@ namespace DefaultNamespace
         {
             if (Input.GetKey(KeyCode.W))
                 inputs[0] = true;
-            if (Input.GetKey(KeyCode.A))
-                inputs[1] = true;
             if (Input.GetKey(KeyCode.S))
+                inputs[1] = true;
+            if (Input.GetKey(KeyCode.A))
                 inputs[2] = true;
             if (Input.GetKey(KeyCode.D))
                 inputs[3] = true;
@@ -43,8 +43,8 @@ namespace DefaultNamespace
 
         private void SendInputs()
         {
-            var message = Message.Create(MessageSendMode.unreliable, ClientToServerID.inputs);
-            message.AddBools(inputs);
+            var message = Message.Create(MessageSendMode.unreliable, ClientToServerID.input);
+            message.AddBools(inputs, false);
             message.AddVector3(cameraTransform.forward);
             NetworkManager.Singleton.Client.Send(message);
         }
